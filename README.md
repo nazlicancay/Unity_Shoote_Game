@@ -1,2 +1,2 @@
-# Unity_Shoote_Game
+# Unity_Shooter_Game
 Space Shooter's clone using Unity
