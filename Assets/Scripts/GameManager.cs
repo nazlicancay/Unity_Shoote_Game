@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    
+    public bool hasPowerUp;
     public GameObject[] targets;
     public bool isGameActive = true;
     private int SRangeX = 2;
     public float SpawnRate = 3.0f;
+    public float SpawnRatePickUp = 4.0f;
     public bool TakeDamage = false;
     public float Damage = 10f;
     public Target target;
@@ -22,19 +25,21 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI NewHighScore;
     public TMP_InputField playerName ;
     public Button RestartButton;
-
+    public GameObject firePoint;
+    public GameObject PowerUp;
+    public GameObject Bomb;
     public Canvas Canvas;
     int previousScore;
     public string input;
     int i;
-
+    public float BulletSpeed;
     public static GameManager gameManagerInstance;
-    Dictionary<string, int> leaderbord = new Dictionary<string, int>();
 
     public List<int> Scores = new List<int>();
     public bool once;
     int[] PlayerPrefScores;
     string list;
+    
 
 
 
@@ -50,6 +55,10 @@ public class GameManager : MonoBehaviour
         Instantiate(targets[0], spawnPos, Quaternion.identity);
 
         StartCoroutine(SpawnTarget());
+        StartCoroutine((SpawnPickUp(PowerUp)));
+        StartCoroutine((SpawnBomb(Bomb)));
+        
+
         gameManagerInstance = this;
 
         HighScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
@@ -126,6 +135,16 @@ public class GameManager : MonoBehaviour
             SpawnRate -= 0.5f;
             time =  0;
         }
+        
+        
+        if (hasPowerUp)
+        {
+            BulletSpeed = 0.2f;
+        }
+        else
+        {
+            BulletSpeed = 0.5f;
+        }
 
     }
 
@@ -143,10 +162,37 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    
+    IEnumerator SpawnPickUp( GameObject gameObject)
+    {
+        while (isGameActive)
+        {
+            yield return new WaitForSeconds(5);
+            
+            Vector3 spawnPos = new Vector3(Random.Range(-SRangeX, SRangeX), 8, 0);
 
-  
+            Instantiate(gameObject,spawnPos, Quaternion.identity);
 
-   
+
+        }
+
+    }
+    
+     IEnumerator SpawnBomb( GameObject gameObject)
+    {
+        while (isGameActive)
+        {
+            yield return new WaitForSeconds(8);
+            
+            Vector3 spawnPos = new Vector3(Random.Range(-SRangeX, SRangeX), 8, 0);
+
+            Instantiate(gameObject,spawnPos, Quaternion.identity);
+
+
+        }
+
+    }
+    
     public void ReadStringInput(string s)
     {
         input = s;
