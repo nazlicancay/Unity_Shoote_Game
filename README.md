@@ -7,6 +7,8 @@ A space shooter game developed by using unity
 - [Dynamic Space Background Lite](https://assetstore.unity.com/packages/2d/textures-materials/dynamic-space-background-lite-104606)
 
 
+## StartPage
+
 ![StartPage](https://github.com/nazlicancay/Unity_Shooter_Game/blob/main/space_Shooter_startPage.png)
 
 
