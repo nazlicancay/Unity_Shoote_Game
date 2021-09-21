@@ -8,4 +8,4 @@ A space shooter game developed by using unity
 
 
 
-<img src="https://github.com/nazlicancay/Unity_Shooter_Game/blob/main/movie_001.gif?raw=true" width="250" height="500"  />
+<img src="https://github.com/nazlicancay/Unity_Shooter_Game/blob/main/movie_001.gif?raw=true" width="300" height="500"  />
